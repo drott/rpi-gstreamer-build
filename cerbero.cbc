@@ -1,0 +1,12 @@
+import os
+from cerbero.config import Platform, Architecture, Distro
+
+packages_prefix = 'gstreamer-custom'
+packager = 'Dominik Röttsches <oss@roettsch.es>'
+# prefix = "/opt/gstreamer-custom"
+
+# git_root = "git://anongit.freedesktop.org/gstreamer-sdk"
+
+# Uncomment to allow parallel builds
+allow_parallel_build = True
+
