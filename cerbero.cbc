@@ -10,4 +10,4 @@ packager = 'Dominik Röttsches <oss@roettsch.es>'
 # Uncomment to allow parallel builds
 allow_parallel_build = True
 
-variants = ['rpi', 'notestspackage' ]
+variants = ['x11', 'rpi', 'notestspackage' ]
