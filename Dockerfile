@@ -28,6 +28,10 @@ COPY cerbero.cbc /root/.cerbero/cerbero.cbc
 RUN set -x \
     && cd /cerbero \
     && python3 ./cerbero-uninstalled bootstrap \
-    && python3 ./cerbero-uninstalled build gst-plugins-base-1.0
+    && python3 ./cerbero-uninstalled build libffi zlib glib gtk-doc-lite \
+        gobject-introspection gstreamer-1.0 libxml2 libogg libpng pixman expat \
+        bzip2 freetype fontconfig cairo harfbuzz pango libvorbis libtheora \
+        libvisual orc opus graphene libjpeg-turbo cdparanoia
+RUN python3 ./cerbero-uninstalled build gst-plugins-base-1.0
 
 RUN [ "cross-build-end" ]

@@ -11,3 +11,4 @@ packager = 'Dominik Röttsches <oss@roettsch.es>'
 allow_parallel_build = True
 
 variants = ['x11', 'rpi', 'notestspackage' ]
+num_of_cpus = 8
