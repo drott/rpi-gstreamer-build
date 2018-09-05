@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     libgl1-mesa-dev \
     libraspberrypi-dev \
     pkg-config
-RUN pkg-config --exists x11
+RUN pkg-config --exists x11 && echo "x11 found by pkg-config" || echo "x11 not found by pkg-config"
 RUN git clone git://anongit.freedesktop.org/gstreamer/cerbero
 RUN git config --global user.email "test@example.com" \
     && git config --global user.name "Dummy User"
