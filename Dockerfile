@@ -32,6 +32,18 @@ RUN set -x \
         gobject-introspection gstreamer-1.0 libxml2 libogg libpng pixman expat \
         bzip2 freetype fontconfig cairo harfbuzz pango libvorbis libtheora \
         libvisual orc opus graphene libjpeg-turbo cdparanoia
-RUN python3 ./cerbero-uninstalled build gst-plugins-base-1.0
+RUN set -x \
+    && apt-get install -y \
+    python3-setuptools \
+    strace \
+    python3-pip
+COPY cerbero-gnueabihf.patch .
+RUN set -x \
+    && cd /cerbero \
+    && patch -p1 < ../cerbero-gnueabihf.patch
+RUN echo 'env' | python3 /cerbero/cerbero-uninstalled shell --use-system-libs
+RUN set -x \
+    && cd /cerbero \
+    && python3 ./cerbero-uninstalled build gst-plugins-base-1.0
 
 RUN [ "cross-build-end" ]

@@ -1,0 +1,13 @@
+diff --git a/cerbero/utils/__init__.py b/cerbero/utils/__init__.py
+    index 0d0dd6d1..b39c571e 100644
+    --- a/cerbero/utils/__init__.py
+    +++ b/cerbero/utils/__init__.py
+    @@ -399,7 +399,7 @@ def add_system_libs(config, new_env):
+         if config.target_distro == Distro.DEBIAN:
+             host = None
+             if arch == Architecture.ARM:
+    -            host = 'arm-linux-gnueabi'
+    +            host = 'arm-linux-gnueabihf'
+             elif arch == Architecture.ARM64:
+                 host = 'aarch64-linux-gnu'
+             elif arch == Architecture.X86:
