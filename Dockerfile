@@ -45,5 +45,12 @@ RUN echo 'env' | python3 /cerbero/cerbero-uninstalled shell --use-system-libs
 RUN set -x \
     && cd /cerbero \
     && python3 ./cerbero-uninstalled build gst-plugins-base-1.0
-
+COPY vpx_armv6.patch .
+RUN set -x \
+    && cd /cerbero \
+    && patch -p1 < ../vpx_armv6.patch \
+    && python3 ./cerbero-uninstalled build libvpx
+RUN set -x \
+    && cd /cerbero \
+    && python3 ./cerbero-uninstalled package gstreamer-1.0
 RUN [ "cross-build-end" ]

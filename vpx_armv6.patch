@@ -1,0 +1,14 @@
+diff --git a/recipes/libvpx.recipe b/recipes/libvpx.recipe
+    index 0a25042d..845dcac7 100644
+    --- a/recipes/libvpx.recipe
+    +++ b/recipes/libvpx.recipe
+    @@ -96,7 +96,8 @@ class Recipe(recipe.Recipe):
+
+             self.configure_options += ' --disable-examples '
+
+    -        self.configure_options += '--target=%s-%s-gcc ' % (arch, platform)
+    +        # self.configure_options += '--target=%s-%s-gcc ' % (arch, platform)
+    +        self.configure_options += '--target=armv6-linux-gcc '
+
+         def configure(self):
+             if self.config.target_platform == Platform.ANDROID:
