@@ -53,19 +53,18 @@ RUN set -x \
 RUN set -x \
     && cd /cerbero \
     && python3 ./cerbero-uninstalled build gst-plugins-good-1.0
-COPY disable_soundtouch.patch .
+COPY soundtouch_id_fix.patch .
 RUN set -x \
     && cd /cerbero \
-    && patch -p1 < ../disable_soundtouch.patch \
+    && git apply ../soundtouch_id_fix.patch \
+    && python3 ./cerbero-uninstalled build soundtouch
+RUN set -x \
+    && cd /cerbero \
     && python3 ./cerbero-uninstalled build gst-plugins-bad-1.0
 COPY disable_omx.patch .
 RUN set -x \
     && cd /cerbero \
     && patch -p1 < ../disable_omx.patch
-COPY disable_soundtouch_in_package.patch .
-RUN set -x \
-    && cd /cerbero \
-    && patch -p1 < ../disable_soundtouch_in_package.patch
 RUN set -x \
     && cd /cerbero \
     && python3 ./cerbero-uninstalled package gstreamer-1.0
