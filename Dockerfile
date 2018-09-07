@@ -68,4 +68,5 @@ RUN set -x \
 RUN set -x \
     && cd /cerbero \
     && python3 ./cerbero-uninstalled package gstreamer-1.0
+RUN ls /cerbero/*.deb
 RUN [ "cross-build-end" ]
