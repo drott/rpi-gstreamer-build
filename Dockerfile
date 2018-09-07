@@ -52,5 +52,17 @@ RUN set -x \
     && python3 ./cerbero-uninstalled build libvpx
 RUN set -x \
     && cd /cerbero \
+    && python3 ./cerbero-uninstalled build gst-plugins-good-1.0
+COPY disable_soundtouch.patch .
+RUN set -x \
+    && cd /cerbero \
+    && patch -p1 < ../disable_soundtouch.patch \
+    && python3 ./cerbero-uninstalled build gst-plugins-bad-1.0
+COPY disable_omx.patch .
+RUN set -x \
+    && cd /cerbero \
+    && patch -p1 < ../disable_omx.patch
+RUN set -x \
+    && cd /cerbero \
     && python3 ./cerbero-uninstalled package gstreamer-1.0
 RUN [ "cross-build-end" ]
