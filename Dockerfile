@@ -62,6 +62,10 @@ COPY disable_omx.patch .
 RUN set -x \
     && cd /cerbero \
     && patch -p1 < ../disable_omx.patch
+COPY disable_soundtouch_in_package.patch .
+RUN set -x \
+    && cd /cerbero \
+    && patch -p1 < ../disable_soundtouch_in_package.patch
 RUN set -x \
     && cd /cerbero \
     && python3 ./cerbero-uninstalled package gstreamer-1.0
