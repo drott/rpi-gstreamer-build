@@ -58,6 +58,12 @@ RUN set -x \
     && cd /cerbero \
     && git apply ../soundtouch_id_fix.patch \
     && python3 ./cerbero-uninstalled build soundtouch
+COPY gst_plugins_bad_introspection.patch .
+RUN set -x \
+    && cd /cerbero \
+    && git apply ../gst_plugins_bad_introspection.patch
+RUN set -x \
+    && apt-get install -y gobject-introspection
 RUN set -x \
     && cd /cerbero \
     && python3 ./cerbero-uninstalled build gst-plugins-bad-1.0

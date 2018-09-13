@@ -1,0 +1,13 @@
+diff --git a/recipes/gst-plugins-bad-1.0.recipe b/recipes/gst-plugins-bad-1.0.recipe
+index 026bfe6..8eb96c3 100644
+--- a/recipes/gst-plugins-bad-1.0.recipe
++++ b/recipes/gst-plugins-bad-1.0.recipe
+@@ -24,7 +24,7 @@ class Recipe(custom.GStreamer):
+         --enable-hls --enable-rtmp --enable-srtp --enable-dts \
+         --enable-libmms --enable-resindvd --enable-soundtouch \
+         --enable-voaacenc --enable-rsvg --enable-openjpeg --enable-spandsp \
+-        --enable-decklink --enable-webrtc --enable-dtls --enable-srt'
++        --enable-decklink --enable-webrtc --enable-dtls --enable-srt --enable-introspection'
+     remotes = {'origin': 'https://anongit.freedesktop.org/git/gstreamer/gst-plugins-bad'}
+     deps = ['gstreamer-1.0', 'gst-plugins-base-1.0', 'bzip2', 'libass',
+             'libkate', 'zlib', 'openh264', 'opus', 'nettle', 'librtmp',
