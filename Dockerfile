@@ -64,6 +64,10 @@ RUN set -x \
     && git apply ../gst_plugins_bad_introspection.patch
 RUN set -x \
     && apt-get install -y gobject-introspection
+COPY add_webrtc_typelib.patch .
+RUN set -x \
+    && cd /cerbero \
+    && git apply ../add_webrtc_typelib.patch
 RUN set -x \
     && cd /cerbero \
     && python3 ./cerbero-uninstalled build gst-plugins-bad-1.0
@@ -75,4 +79,6 @@ RUN set -x \
     && cd /cerbero \
     && python3 ./cerbero-uninstalled package gstreamer-1.0
 RUN ls /cerbero/*.deb
+RUN set -x \
+    && find /cerbero/build -iname 'Gst*typelib'
 RUN [ "cross-build-end" ]
