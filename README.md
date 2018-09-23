@@ -11,7 +11,6 @@ Currently completes the build and generates packages inside the container.
 
 ## Known issues
 
-* Disable OMX at the moment.
 * It is complicated to extract the build packages
   for now: They are listed at the end, you can copy them out using `docker cp`
   after having created an image.
