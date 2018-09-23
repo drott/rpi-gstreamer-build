@@ -1,0 +1,12 @@
+diff --git a/recipes/gst-omx-1.0.recipe b/recipes/gst-omx-1.0.recipe
+index fde85f5..6dec154 100644
+--- a/recipes/gst-omx-1.0.recipe
++++ b/recipes/gst-omx-1.0.recipe
+@@ -20,5 +20,7 @@ class Recipe(custom.GStreamer):
+             self.append_env('CPPFLAGS', *flags)
+             self.append_env('LDFLAGS', '-L/opt/vc/lib')
+             self.meson_options['target'] = 'rpi'
++            # Prevent the default OMX include from being used.
++            self.meson_options['header_path'] = '/opt/vc/include/IL'
+         else:
+             self.meson_options['target'] = 'generic'
