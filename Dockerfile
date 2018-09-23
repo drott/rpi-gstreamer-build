@@ -71,38 +71,17 @@ RUN set -x \
 RUN set -x \
     && cd /cerbero \
     && python3 ./cerbero-uninstalled build gst-plugins-bad-1.0
-COPY disable_omx.patch .
+COPY omx_header_path.patch .
 RUN set -x \
     && cd /cerbero \
-    && patch -p1 < ../disable_omx.patch
+    && patch -p1 < ../omx_header_path.patch
+RUN set -x \
+    && cd /cerbero \
+    && python3 ./cerbero-uninstalled build gst-omx-1.0
 RUN set -x \
     && cd /cerbero \
     && python3 ./cerbero-uninstalled package gstreamer-1.0
 RUN ls /cerbero/*.deb
 RUN set -x \
     && find /cerbero/build -iname 'Gst*typelib'
-RUN set -x \
-    && apt-get install -y curl checkinstall make build-essential \
-    libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl \
-    llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev\
-    && curl -OJ https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tgz \
-    && tar xzf Python-3.7.0.tgz
-RUN set -x \
-    && echo deb-src http://archive.raspbian.org/raspbian stretch  main contrib non-free >> /etc/apt/sources.list \
-    && apt update
-# RUN set -x \
-#     && apt-get build-dep python3 \
-#     && apt-get install -y libffi-dev
-# RUN set -x \
-#     && cd Python-3.7.0 \
-#     && ./configure --prefix=/usr/local \
-#     && make -j$(nproc) build_all
-# RUN set -x \
-#     && cd Python-3.7.0 \
-#     && checkinstall --install=no  -yD make altinstall
-COPY omx_header_path.patch .
-RUN set -x \
-    && cd /cerbero \
-    && patch -p1 < ../omx_header_path.patch \
-    && python3 ./cerbero-uninstalled build gst-omx-1.0
 RUN [ "cross-build-end" ]
